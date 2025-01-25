@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
+    // Flag to track if tasks have changed
+    let isDirty = false;
+
     // Load tasks from Local Storage
     function loadTasks() {
         const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
@@ -29,21 +32,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Create a new list item
         const listItem = document.createElement('li');
-        listItem.className = 'task-item'; // Optional class for styling
+        listItem.classList.add('task-item'); // Add class for styling
 
         // Create a span to hold the task text
         const taskTextSpan = document.createElement('span');
+        taskTextSpan.classList.add('task-text'); // Add class for task text
         taskTextSpan.textContent = taskText;
 
         // Create a remove button for the task
         const removeButton = document.createElement('button');
         removeButton.textContent = "Remove";
-        removeButton.className = 'remove-btn';
+        removeButton.classList.add('remove-btn'); // Add class for remove button
 
         // Add an event listener to the remove button
         removeButton.addEventListener('click', () => {
             taskList.removeChild(listItem);
-            saveTasks(); // Update Local Storage after removing
+            isDirty = true; // Mark as changed
+        });
+
+        // Add an event listener to edit the task text when clicked
+        taskTextSpan.addEventListener('click', () => {
+            const newText = prompt("Edit task:", taskTextSpan.textContent);
+            if (newText && newText.trim() !== "") {
+                taskTextSpan.textContent = newText;
+                isDirty = true; // Mark as changed
+            }
         });
 
         // Append the task text span and remove button to the list item
@@ -57,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         taskInput.value = "";
 
         // Save the task to Local Storage if required
-        if (save) saveTasks();
+        if (save) {
+            saveTasks();
+        }
     }
 
     // Add click event listener to the add button
@@ -67,6 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
     taskInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             addTask();
+        }
+    });
+
+    // Periodically save tasks or when the user leaves the page
+    window.addEventListener('beforeunload', () => {
+        if (isDirty) {
+            saveTasks();
         }
     });
 
