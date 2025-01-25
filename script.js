@@ -82,4 +82,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Debugging: Confirm event listeners are attached
     console.log("Event listeners attached.");
 });
-
