@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Create a new list item
         const listItem = document.createElement('li');
+
+        // Set the text content of the list item to taskText
         listItem.textContent = taskText;
 
         // Create a remove button for the task
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         removeButton.className = 'remove-btn';
 
         // Assign an onclick event to the remove button
-        removeButton.onclick = () => {
+        removeButton.onclick = function() {
             taskList.removeChild(listItem);
         };
 
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addButton.addEventListener('click', addTask);
 
     // Add keypress event listener to the input field
-    taskInput.addEventListener('keypress', (event) => {
+    taskInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             addTask();
         }
