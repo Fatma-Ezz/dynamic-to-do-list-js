@@ -18,23 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Create a new list item
         const listItem = document.createElement('li');
-
-        // Create a span to hold the task text
-        const taskTextSpan = document.createElement('span');
-        taskTextSpan.textContent = taskText;
+        listItem.textContent = taskText;
 
         // Create a remove button for the task
         const removeButton = document.createElement('button');
         removeButton.textContent = "Remove";
         removeButton.className = 'remove-btn';
 
-        // Add an event listener to the remove button
-        removeButton.addEventListener('click', () => {
+        // Assign an onclick event to the remove button
+        removeButton.onclick = () => {
             taskList.removeChild(listItem);
-        });
+        };
 
-        // Append the task text span and remove button to the list item
-        listItem.appendChild(taskTextSpan);
+        // Append the remove button to the list item
         listItem.appendChild(removeButton);
 
         // Append the list item to the task list
@@ -53,9 +49,4 @@ document.addEventListener('DOMContentLoaded', () => {
             addTask();
         }
     });
-});
-
-// Add event listener for DOMContentLoaded event to invoke addTask
-document.addEventListener('DOMContentLoaded', () => {
-    addTask();
 });
