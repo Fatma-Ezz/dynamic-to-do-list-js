@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load tasks from Local Storage
     function loadTasks() {
         const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-        storedTasks.forEach(taskText => addTask(taskText, false)); // 'false' indicates not to save again to Local Storage
+        storedTasks.forEach(taskText => addTask(taskText, false)); // 'false' prevents saving again to Local Storage
     }
 
     // Function to add a task to the list
@@ -86,4 +86,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load stored tasks when the page loads
     loadTasks();
 });
+
 
