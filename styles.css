@@ -1,28 +1,24 @@
 body {
     font-family: Arial, sans-serif;
- 
     background-image: url('tired-girly.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
- 
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Use min-height instead of height */
+    min-height: 100vh;
     margin: 0;
+    background-color: #f0f0f0;
 }
 
 #todo-app {
     width: 100%;
     max-width: 400px;
-    /* Added semi-transparent background for readability */
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 8px;
-    /* Removed box-shadow for cleaner look */
-    /* Center content vertically */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,10 +37,10 @@ body {
 }
 
 #task-input {
-    flex: 1; /* Takes up available space */
+    flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px; /* Rounded corners on the left */
+    border-radius: 4px 0 0 4px;
 }
 
 #add-task-btn {
@@ -52,7 +48,7 @@ body {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 0 4px 4px 0; /* Rounded corners on the right */
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
 
@@ -72,18 +68,16 @@ li {
     padding: 10px;
     border-radius: 4px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .task-text {
     flex: 1;
     cursor: pointer;
-    /* For completed tasks */
     transition: color 0.2s, text-decoration 0.2s, opacity 0.2s;
 }
 
-.completed {
+.completed .task-text {
     text-decoration: line-through;
     color: gray;
     opacity: 0.7;
@@ -101,4 +95,14 @@ li {
 
 .remove-btn:hover {
     background-color: #d9534f;
+}
+
+.checkmark-icon {
+    color: green;
+    margin-right: 10px;
+    visibility: hidden;
+}
+
+.completed .checkmark-icon {
+    visibility: visible;
 }
