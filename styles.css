@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    /* Removed background-color and added background image */
+ 
     background-image: url('tired-girly.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* Center the content */
+ 
     display: flex;
     justify-content: center;
     align-items: center;
